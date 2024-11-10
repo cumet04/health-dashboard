@@ -12,6 +12,7 @@ require 'action_view/railtie'
 Bundler.require(*Rails.groups)
 
 module HealthDashboard
+  # 通常environmentsに書かれるようなものもproduction相当を正としてここに記載し、それ以外のenvに対して差分を設定する
   class Application < Rails::Application
     config.load_defaults 8.0
     config.api_only = true
@@ -25,7 +26,7 @@ module HealthDashboard
     config.assume_ssl = true
     config.force_ssl = true
 
-    config.logger   = ActiveSupport::TaggedLogging.logger(STDOUT)
+    config.logger   = ActiveSupport::TaggedLogging.logger($stdout)
     config.log_tags = [:request_id]
     config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info')
     config.silence_healthcheck_path = '/up'
