@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # デプロイ用設定の解除
   config.assume_ssl = false
   config.force_ssl = false
   config.action_controller.perform_caching = false
-  config.eager_load = ENV["CI"].present?
+  config.eager_load = ENV['CI'].present?
 
   # warn/error関連
   config.consider_all_requests_local = true

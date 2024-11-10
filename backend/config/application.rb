@@ -1,11 +1,13 @@
-require_relative "boot"
+# frozen_string_literal: true
 
-require "rails"
-require "active_model/railtie"
-require "active_job/railtie"
-require "active_record/railtie"
-require "action_controller/railtie"
-require "action_view/railtie"
+require_relative 'boot'
+
+require 'rails'
+require 'active_model/railtie'
+require 'active_job/railtie'
+require 'active_record/railtie'
+require 'action_controller/railtie'
+require 'action_view/railtie'
 
 Bundler.require(*Rails.groups)
 
@@ -24,9 +26,9 @@ module HealthDashboard
     config.force_ssl = true
 
     config.logger   = ActiveSupport::TaggedLogging.logger(STDOUT)
-    config.log_tags = [ :request_id ]
-    config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
-    config.silence_healthcheck_path = "/up"
+    config.log_tags = [:request_id]
+    config.log_level = ENV.fetch('RAILS_LOG_LEVEL', 'info')
+    config.silence_healthcheck_path = '/up'
 
     config.consider_all_requests_local = false
     config.active_record.migration_error = :raise
