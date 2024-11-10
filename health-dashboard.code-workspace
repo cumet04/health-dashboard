@@ -1,0 +1,21 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "./backend"
+    },
+  ],
+  "settings": {
+    "files.exclude": {
+      // hide first-level folders from root
+      "backend": true,
+    },
+    "extensions.ignoreRecommendations": true,
+    "rubyLsp.formatter": "rubocop",
+    "[ruby]": {
+      "editor.defaultFormatter": "Shopify.ruby-lsp"
+    }
+  },
+}
