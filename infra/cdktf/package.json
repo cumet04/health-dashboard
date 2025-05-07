@@ -5,7 +5,9 @@
     "typecheck": "tsc --noEmit",
     "synth": "cdktf synth",
     "plan": "cdktf plan",
-    "apply": "cdktf apply"
+    "apply": "cdktf apply",
+    "lint": "gts lint",
+    "fix": "gts fix"
   },
   "dependencies": {
     "@cdktf/provider-aws": "19.63.0",
@@ -18,6 +20,6 @@
     "eslint-plugin-prettier": "^5.4.0",
     "gts": "^6.0.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "typescript": "<5.2.0"
   }
 }
