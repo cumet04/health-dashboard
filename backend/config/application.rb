@@ -17,8 +17,6 @@ module HealthDashboard
     config.load_defaults 8.0
     config.api_only = true
 
-    config.autoload_lib(ignore: %w[assets tasks])
-
     config.enable_reloading = false
     config.eager_load = true
     config.action_controller.perform_caching = true
