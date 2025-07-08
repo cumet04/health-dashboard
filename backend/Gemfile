@@ -12,6 +12,9 @@ gem 'thruster', require: false
 gem 'puma'
 gem 'sqlite3'
 
+gem 'faraday'
+gem 'faraday-cookie_jar'
+
 group :development, :test do
   gem 'brakeman', require: false
   gem 'debug', require: 'debug/prelude'
