@@ -1,6 +1,4 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
-import { apiClient } from "../lib/api";
 import { Link } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
@@ -11,26 +9,11 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export async function loader({}: Route.LoaderArgs) {
-  try {
-    // バックエンドAPIからヘルスチェックデータを取得
-    const healthData = await apiClient.get<{ status: string }>('/up');
-    return { healthData, error: null };
-  } catch (error) {
-    console.error('バックエンドAPI接続エラー:', error);
-    return { 
-      healthData: null, 
-      error: 'バックエンドAPIに接続できませんでした' 
-    };
-  }
 }
 
 export default function Home({ loaderData }: Route.ComponentProps) {
-  const { healthData, error } = loaderData;
-
   return (
     <div>
-      <Welcome />
-      
       <div className="mt-8 p-4 border rounded-lg">
         <h2 className="text-xl font-semibold mb-4">機能一覧</h2>
         <div className="space-y-2">
