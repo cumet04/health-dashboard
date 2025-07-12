@@ -1,0 +1,3 @@
+[submodule "backend/lib/tanita-rb"]
+	path = backend/lib/tanita-rb
+	url = https://github.com/cumet04/tanita-rb.git

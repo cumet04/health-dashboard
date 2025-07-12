@@ -6,16 +6,26 @@
     {
       "path": "./backend"
     },
+    {
+      "path": "./frontend"
+    }
   ],
   "settings": {
     "files.exclude": {
       // hide first-level folders from root
       "backend": true,
+      "frontend": true
     },
     "extensions.ignoreRecommendations": true,
     "rubyLsp.formatter": "rubocop",
     "[ruby]": {
       "editor.defaultFormatter": "Shopify.ruby-lsp"
+    },
+    "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
-  },
+  }
 }
