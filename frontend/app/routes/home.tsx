@@ -1,6 +1,7 @@
 import type { Route } from "./+types/home";
 import { Welcome } from "../welcome/welcome";
 import { apiClient } from "../lib/api";
+import { Link } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -31,25 +32,16 @@ export default function Home({ loaderData }: Route.ComponentProps) {
       <Welcome />
       
       <div className="mt-8 p-4 border rounded-lg">
-        <h2 className="text-xl font-semibold mb-2">
-          バックエンドAPI接続状況
-        </h2>
-        
-        {error ? (
-          <div className="text-red-600">
-            <p>❌ {error}</p>
-            <p className="text-sm mt-1">
-              バックエンドサーバーが起動していることを確認してください。
-            </p>
-          </div>
-        ) : (
-          <div className="text-green-600">
-            <p>✅ バックエンドAPI接続成功</p>
-            <p className="text-sm mt-1">
-              ステータス: {healthData?.status || 'OK'}
-            </p>
-          </div>
-        )}
+        <h2 className="text-xl font-semibold mb-4">機能一覧</h2>
+        <div className="space-y-2">
+          <Link 
+            to="/body-compositions" 
+            className="block p-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors"
+          >
+            <h3 className="font-medium text-blue-900">体組成データ</h3>
+            <p className="text-sm text-blue-700">体重・体脂肪率など測定データの表示</p>
+          </Link>
+        </div>
       </div>
     </div>
   );
