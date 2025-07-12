@@ -9,16 +9,14 @@ AllCops:
     - bin/{brakeman,bundle,dev,jobs,kamal,rails,rake,rubocop,thrust}
     - db/{,cache_,queue_}schema.rb
 
-# 日本語のコメントを許可
 Style/AsciiComments:
-  Enabled: false
+  Enabled: false # 日本語のコメントを許可
 
 Style/Documentation:
-  Exclude:
-    - db/migrate/*
+  Enabled: false # しばらくそんな大規模にならないので無効化。でかくなったら考える
 
 Metrics/MethodLength:
-  CountAsOne:  ['array', 'hash', 'heredoc', 'method_call']
+  CountAsOne: ["array", "hash", "heredoc", "method_call"]
 
 Metrics/AbcSize:
   CountRepeatedAttributes: false

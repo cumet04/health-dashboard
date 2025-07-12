@@ -9,6 +9,10 @@ class BodyComposition < ApplicationRecord
   scope :ordered, -> { order(time: :desc) }
   scope :on_date, ->(date) { where(time: date.all_day) }
 
+  def to_display_hash
+    attributes.except('id', 'created_at', 'updated_at')
+  end
+
   def self.fetch_raw_records(since)
     require_relative '../../lib/tanita-rb/lib/tanita'
 
