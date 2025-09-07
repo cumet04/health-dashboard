@@ -1,4 +1,4 @@
-service: health_dashboard
+service: health_dashboard_backend
 image: ghcr.io/cumet04/health-dashboard/backend
 
 servers:
