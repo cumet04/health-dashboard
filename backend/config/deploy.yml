@@ -10,7 +10,8 @@ ssh:
   user: inomoto
 
 proxy:
-  host: app.example.com
+  # host名として暗黙のkamal-proxyのコンテナ名を指定することで、frontendコンテナからproxy経由でbackendに疎通できるようにする
+  host: kamal-proxy
 
 registry:
   server: ghcr.io

@@ -10,7 +10,7 @@ ssh:
   user: inomoto
 
 proxy:
-  host: web.example.com
+  host: '*.ngrok-free.app'
 
 registry:
   server: ghcr.io
@@ -19,8 +19,12 @@ registry:
   password:
     - GITHUB_TOKEN
 
+env:
+  clear:
+    API_BASE_URL: http://kamal-proxy
+
 aliases:
-  shell: app exec --interactive --reuse "bash"
+  shell: app exec --interactive --reuse "sh"
   logs: app logs -f
 
 builder:
