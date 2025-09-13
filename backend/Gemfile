@@ -3,7 +3,6 @@
 source 'https://rubygems.org'
 
 gem 'bootsnap', require: false
-gem 'kamal', require: false
 gem 'rails', '~> 8.0.0'
 gem 'solid_cache'
 gem 'solid_queue'

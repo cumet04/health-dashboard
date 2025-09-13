@@ -1,0 +1,31 @@
+service: health_dashboard_frontend
+image: ghcr.io/cumet04/health-dashboard/frontend
+
+servers:
+  # WSLの別インスタンス宛デプロイだが、IP自体は全部同じなようなので、デプロイマシンのIPをデプロイ先として使う
+  web:
+    - <%= %x(hostname -I | cut -d' ' -f 1) %>
+
+ssh:
+  user: inomoto
+
+proxy:
+  host: '*.ngrok-free.app'
+
+registry:
+  server: ghcr.io
+  username:
+    - GITHUB_USER
+  password:
+    - GITHUB_TOKEN
+
+env:
+  clear:
+    API_BASE_URL: http://kamal-proxy
+
+aliases:
+  shell: app exec --interactive --reuse "sh"
+  logs: app logs -f
+
+builder:
+  arch: amd64
