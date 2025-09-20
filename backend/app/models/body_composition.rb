@@ -1,5 +1,5 @@
 class BodyComposition < ApplicationRecord
-  validates :time, presence: true
+  validates :time, presence: true, uniqueness: true
   validates :weight, :body_fat, :body_fat_mass, :visceral_fat_level, :basal_metabolism,
             :muscle_mass, :bone_mass, :body_water_percentage,
             numericality: { greater_than: 0 }, allow_nil: true
