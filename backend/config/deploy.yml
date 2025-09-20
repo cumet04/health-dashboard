@@ -23,6 +23,8 @@ registry:
 env:
   secret:
     - SECRET_KEY_BASE
+    - HEALTHPLANET_ID
+    - HEALTHPLANET_PASSWORD
   clear:
     # MEMO: env.secretを使う場合は通常の環境変数セットはclearの下に置く必要がある
     # ↓はサンプルレコードなので不要になったら消す
