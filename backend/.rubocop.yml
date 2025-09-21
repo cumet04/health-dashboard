@@ -15,6 +15,11 @@ Style/AsciiComments:
 Style/Documentation:
   Enabled: false # しばらくそんな大規模にならないので無効化。でかくなったら考える
 
+Style/ClassAndModuleChildren:
+  # class Foo; class Bar; か class Foo::Bar; かのやつ。compactが後者。
+  # 前者にするとvscodeの定義ジャンプが混乱する (上の例でFooに行くとBarのファイルのclass Fooに飛んでしまう) のでcompactに揃える。
+  EnforcedStyle: compact
+
 Metrics/MethodLength:
   CountAsOne: ["array", "hash", "heredoc", "method_call"]
 
