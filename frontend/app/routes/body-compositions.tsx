@@ -1,4 +1,5 @@
 import type { Route } from "./+types/body-compositions";
+import { useNavigation } from "react-router";
 import { getBodyCompositions, type BodyComposition } from "../lib/body-composition";
 
 export function meta({}: Route.MetaArgs) {
@@ -16,18 +17,28 @@ export async function loader({}: Route.LoaderArgs) {
     console.error('体組成データ取得エラー:', error);
     return { 
       bodyCompositions: [], 
-      error: '体組成データの取得に失敗しました' 
+      error: '最新の体組成データの取得に失敗しました' 
     };
   }
 }
 
 export default function BodyCompositions({ loaderData }: Route.ComponentProps) {
   const { bodyCompositions, error } = loaderData;
+  const navigation = useNavigation();
+  const isLoadingCurrentRoute =
+    navigation.state === "loading" && navigation.location?.pathname === "/body-compositions";
+
+  const LoadingNotice = () => (
+    <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+      <p className="text-blue-800 text-sm">最新の体組成データを読み込み中です...</p>
+    </div>
+  );
 
   if (error) {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">体組成データ</h1>
+        {isLoadingCurrentRoute && <LoadingNotice />}
         <div className="bg-red-50 border border-red-200 rounded-lg p-4">
           <p className="text-red-800">❌ {error}</p>
         </div>
@@ -38,6 +49,7 @@ export default function BodyCompositions({ loaderData }: Route.ComponentProps) {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <h1 className="text-3xl font-bold text-gray-900 mb-8">体組成データ</h1>
+      {isLoadingCurrentRoute && <LoadingNotice />}
       
       {bodyCompositions.length === 0 ? (
         <div className="bg-gray-50 border border-gray-200 rounded-lg p-8 text-center">
