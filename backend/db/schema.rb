@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_06_090310) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_21_091146) do
   create_table "body_compositions", force: :cascade do |t|
     t.datetime "time", null: false
     t.decimal "weight", precision: 16, scale: 10
@@ -25,6 +25,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_06_090310) do
     t.integer "muscle_quality_score_all"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["time"], name: "index_body_compositions_on_time"
+    t.index ["time"], name: "index_body_compositions_on_time", unique: true
   end
 end
