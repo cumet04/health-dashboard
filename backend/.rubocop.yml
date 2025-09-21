@@ -1,4 +1,4 @@
-require:
+plugins:
   - rubocop-performance
   - rubocop-rails
 
@@ -8,6 +8,11 @@ AllCops:
     # 自動生成系は除外
     - bin/{brakeman,bundle,dev,jobs,kamal,rails,rake,rubocop,thrust}
     - db/{,cache_,queue_}schema.rb
+    # リポジトリの範囲外は除外
+    - lib/tanita-rb/**/*
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never # frozen_string_literalはrubyのwarningの方で止めるのでコメントは入れない
 
 Style/AsciiComments:
   Enabled: false # 日本語のコメントを許可
@@ -15,8 +20,16 @@ Style/AsciiComments:
 Style/Documentation:
   Enabled: false # しばらくそんな大規模にならないので無効化。でかくなったら考える
 
+Style/ClassAndModuleChildren:
+  # class Foo; class Bar; か class Foo::Bar; かのやつ。compactが後者。
+  # 前者にするとvscodeの定義ジャンプが混乱する (上の例でFooに行くとBarのファイルのclass Fooに飛んでしまう) のでcompactに揃える。
+  EnforcedStyle: compact
+
 Metrics/MethodLength:
   CountAsOne: ["array", "hash", "heredoc", "method_call"]
+  Exclude:
+    # migrateはカラム列挙で普通に長くなるので除外
+    - db/migrate/**/*.rb
 
 Metrics/AbcSize:
   CountRepeatedAttributes: false

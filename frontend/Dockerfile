@@ -1,24 +1,27 @@
-FROM node:22-alpine AS development-dependencies-env
-COPY . /app
-WORKDIR /app
-RUN npm ci
+# syntax=docker/dockerfile:1
+# check=error=true
 
-FROM node:22-alpine AS production-dependencies-env
-COPY ./package.json package-lock.json /app/
+FROM node:22.19.0-slim AS base
 WORKDIR /app
+
+
+FROM base AS packages-env
+COPY ./package.json package-lock.json /app/
 RUN npm ci --omit=dev
 
-FROM node:22-alpine AS build-env
+
+FROM base AS build-env
+COPY ./package.json package-lock.json /app/
+RUN npm ci
+
 COPY . /app/
-COPY --from=development-dependencies-env /app/node_modules /app/node_modules
-WORKDIR /app
 RUN npm run build
 
-FROM node:22-alpine
+
+FROM base
 COPY ./package.json package-lock.json /app/
-COPY --from=production-dependencies-env /app/node_modules /app/node_modules
+COPY --from=packages-env /app/node_modules /app/node_modules
 COPY --from=build-env /app/build /app/build
-WORKDIR /app
 
 ENV PORT=80
 CMD ["npm", "run", "start"]

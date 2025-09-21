@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require_relative 'boot'
 
 require 'rails'
@@ -11,11 +9,14 @@ require 'action_view/railtie'
 
 Bundler.require(*Rails.groups)
 
-module HealthDashboard
+module HealthDashboard # rubocop:disable Style/ClassAndModuleChildren
   # 通常environmentsに書かれるようなものもproduction相当を正としてここに記載し、それ以外のenvに対して差分を設定する
   class Application < Rails::Application
     config.load_defaults 8.0
     config.api_only = true
+
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :utc # sqlite使ってる都合でutcを明示
 
     config.enable_reloading = false
     config.eager_load = true
