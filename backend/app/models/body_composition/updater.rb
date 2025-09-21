@@ -1,6 +1,6 @@
 class BodyComposition::Updater
   def call
-    latest = BodyComposition.maximum(:time)
+    latest = BodyComposition.maximum(:time) || Time.zone.at(0)
     return if latest > Time.current.beginning_of_day # だいたい1日1更新なので、当日分があれば更新不要
 
     fetch_raw_records(latest)
