@@ -17,6 +17,9 @@ module HealthDashboard
     config.load_defaults 8.0
     config.api_only = true
 
+    config.time_zone = 'Tokyo'
+    config.active_record.default_timezone = :utc # sqlite使ってる都合でutcを明示
+
     config.enable_reloading = false
     config.eager_load = true
     config.action_controller.perform_caching = true

@@ -1,8 +1,11 @@
-class BodyComposition::Retriever
-  def call(since:)
-    fetch_raw_records(since).map do |record|
-      from_raw_record(record)
-    end
+class BodyComposition::Updater
+  def call
+    latest = BodyComposition.maximum(:time)
+    return if latest > Time.current.beginning_of_day # だいたい1日1更新なので、当日分があれば更新不要
+
+    fetch_raw_records(latest)
+      .map { from_raw_record(it) }
+      .each(&:save)
   end
 
   private
