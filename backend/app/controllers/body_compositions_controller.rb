@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class BodyCompositionsController < ApplicationController
   def index
     BodyComposition::Updater.new.call

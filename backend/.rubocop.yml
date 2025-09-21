@@ -1,4 +1,4 @@
-require:
+plugins:
   - rubocop-performance
   - rubocop-rails
 
@@ -8,6 +8,11 @@ AllCops:
     # 自動生成系は除外
     - bin/{brakeman,bundle,dev,jobs,kamal,rails,rake,rubocop,thrust}
     - db/{,cache_,queue_}schema.rb
+    # リポジトリの範囲外は除外
+    - lib/tanita-rb/**/*
+
+Style/FrozenStringLiteralComment:
+  EnforcedStyle: never # frozen_string_literalはrubyのwarningの方で止めるのでコメントは入れない
 
 Style/AsciiComments:
   Enabled: false # 日本語のコメントを許可
@@ -22,6 +27,9 @@ Style/ClassAndModuleChildren:
 
 Metrics/MethodLength:
   CountAsOne: ["array", "hash", "heredoc", "method_call"]
+  Exclude:
+    # migrateはカラム列挙で普通に長くなるので除外
+    - db/migrate/**/*.rb
 
 Metrics/AbcSize:
   CountRepeatedAttributes: false

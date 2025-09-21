@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 Rails.application.configure do
   # デプロイ用設定の解除
   config.assume_ssl = false
